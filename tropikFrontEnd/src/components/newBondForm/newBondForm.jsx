@@ -1,12 +1,12 @@
 // NewBondForm.jsx
 import React, { useState } from 'react';
-import './NewBondForm.css'; // Estilos CSS
+import './NewBondForm.css';
+import ConfirmationModal from '../Modales/modal/ConfirmationModal'; // Ajusta la ruta si es necesario
 
 const NewBondForm = () => {
-  // Estado para controlar qué paso se muestra
   const [currentStep, setCurrentStep] = useState(1);
+  const [showModal, setShowModal] = useState(false); // Para controlar el modal
 
-  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     codigoUnico: '',
     ubicacion: '',
@@ -17,36 +17,49 @@ const NewBondForm = () => {
     registro: '',
   });
 
-  // Función para manejar cambios en los inputs
+  // Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Función para ir al siguiente paso
+  // Navegar entre pasos
   const handleNext = () => {
-    if (validateStep1()) {
-      setCurrentStep(2);
+    if (validateStep1()) setCurrentStep(2);
+  };
+
+  const handlePrevious = () => setCurrentStep(1);
+
+  // Al terminar, abrir modal
+  const handleFinish = (e) => {
+    e.preventDefault();
+    if (validateStep2()) {
+      setShowModal(true);
     }
   };
 
-  // Función para volver al paso anterior
-  const handlePrevious = () => {
-    setCurrentStep(1);
-  };
+  // Cerrar modal sin confirmar
+  const handleCloseModal = () => setShowModal(false);
 
-  // Función para enviar el formulario (terminar)
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Datos del formulario:', formData);
-    // Aquí iría la lógica para enviar los datos a un backend
+  // Confirmar acción desde el modal
+  const handleConfirmModal = () => {
+    setShowModal(false);
+    console.log('Formulario enviado:', formData);
     alert('¡Bono creado con éxito!');
+    // Aquí podrías limpiar el formulario o redirigir
+    setCurrentStep(1);
+    setFormData({
+      codigoUnico: '',
+      ubicacion: '',
+      cantidadCO2: '',
+      periodoVerificacion: '',
+      certificador: '',
+      fechaEmision: '',
+      registro: '',
+    });
   };
 
-  // Validación simple del Paso 1
+  // Validación Paso 1
   const validateStep1 = () => {
     const { codigoUnico, ubicacion, cantidadCO2, periodoVerificacion } = formData;
     if (!codigoUnico || !ubicacion || !cantidadCO2 || !periodoVerificacion) {
@@ -56,8 +69,19 @@ const NewBondForm = () => {
     return true;
   };
 
+  // Validación Paso 2
+  const validateStep2 = () => {
+    const { certificador, fechaEmision, registro } = formData;
+    if (!certificador || !fechaEmision || !registro) {
+      alert('Por favor, completa todos los campos del Paso 2.');
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="form-container">
+      {/* Paso 1 */}
       <div className={`form-step ${currentStep === 1 ? 'active' : ''}`}>
         <h2 className="form-title">Nuevo bono</h2>
 
@@ -69,7 +93,7 @@ const NewBondForm = () => {
             name="codigoUnico"
             value={formData.codigoUnico}
             onChange={handleChange}
-            placeholder="Ingresa el codigo unico"
+            placeholder="Ingresa el código único"
             className="form-input"
           />
         </div>
@@ -82,7 +106,7 @@ const NewBondForm = () => {
             name="ubicacion"
             value={formData.ubicacion}
             onChange={handleChange}
-            placeholder="Ingresa la ubicación en la que se encuentra"
+            placeholder="Ingresa la ubicación"
             className="form-input"
           />
         </div>
@@ -95,20 +119,20 @@ const NewBondForm = () => {
             name="cantidadCO2"
             value={formData.cantidadCO2}
             onChange={handleChange}
-            placeholder="Ingresa la cantidad de CO2 solo en toneladas"
+            placeholder="Solo en toneladas"
             className="form-input"
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="periodoVerificacion">Perdiodo de verificación:</label>
+          <label htmlFor="periodoVerificacion">Periodo de verificación:</label>
           <input
             type="text"
             id="periodoVerificacion"
             name="periodoVerificacion"
             value={formData.periodoVerificacion}
             onChange={handleChange}
-            placeholder='Ingresa "Dia", "Mes" y "Año"'
+            placeholder='Ingresa "Día", "Mes" y "Año"'
             className="form-input"
           />
         </div>
@@ -118,6 +142,7 @@ const NewBondForm = () => {
         </button>
       </div>
 
+      {/* Paso 2 */}
       <div className={`form-step ${currentStep === 2 ? 'active' : ''}`}>
         <h2 className="form-title">Nuevo bono</h2>
 
@@ -129,7 +154,7 @@ const NewBondForm = () => {
             name="certificador"
             value={formData.certificador}
             onChange={handleChange}
-            placeholder="Ingresa el nombre de la persona que lo certifico"
+            placeholder="Nombre del certificador"
             className="form-input"
           />
         </div>
@@ -142,7 +167,7 @@ const NewBondForm = () => {
             name="fechaEmision"
             value={formData.fechaEmision}
             onChange={handleChange}
-            placeholder="Ingresa la fecha en la que bono fue admitido"
+            placeholder="Fecha de emisión"
             className="form-input"
           />
         </div>
@@ -155,7 +180,7 @@ const NewBondForm = () => {
             name="registro"
             value={formData.registro}
             onChange={handleChange}
-            placeholder="Plataforma que lacertifico"
+            placeholder="Plataforma que lo certificó"
             className="form-input"
           />
         </div>
@@ -164,11 +189,19 @@ const NewBondForm = () => {
           <button className="prev-button" onClick={handlePrevious}>
             Anterior
           </button>
-          <button className="finish-button" onClick={handleSubmit}>
+          <button className="finish-button" onClick={handleFinish}>
             Terminar
           </button>
         </div>
       </div>
+
+      {/* Modal de Confirmación */}
+      {showModal && (
+        <ConfirmationModal
+          onClose={handleCloseModal}
+          onConfirm={handleConfirmModal}
+        />
+      )}
     </div>
   );
 };

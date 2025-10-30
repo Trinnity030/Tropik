@@ -1,8 +1,10 @@
-// TropikTable.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 import './TropikTable.css'; // Estilos CSS
 
 const TropikTable = () => {
+  const navigate = useNavigate(); // Hook para navegación
+
   // Datos simulados para la tabla
   const tableData = [
     { id: 1, project: 'Xochi', location: 'México', verification: '6 meses', verifier: 'SEMARNAT', emission: '16/10/2025', status: 'Activo' },
@@ -10,6 +12,11 @@ const TropikTable = () => {
     { id: 3, project: 'Xochi', location: 'México', verification: '6 meses', verifier: 'SEMARNAT', emission: '16/10/2025', status: 'Activo' },
     { id: 4, project: 'Xochi', location: 'México', verification: '6 meses', verifier: 'SEMARNAT', emission: '16/10/2025', status: 'Activo' },
   ];
+
+  // Función para redirigir al formulario de nuevo bono
+  const handleAddNewBond = () => {
+    navigate('/new-bond'); // Redirige a la ruta del formulario
+  };
 
   return (
     <div className="tropik-container">
@@ -23,7 +30,9 @@ const TropikTable = () => {
         </div>
         <div className="user-actions">
           <span className="welcome-text">Bienvenido, Usuario</span>
-          <button className="add-button">Agregar nuevo bono</button>
+          <button className="add-button" onClick={handleAddNewBond}>
+            Agregar nuevo bono
+          </button>
         </div>
       </header>
 
@@ -36,10 +45,10 @@ const TropikTable = () => {
             <thead>
               <tr>
                 <th>Proyecto de origen</th>
-                <th>Ubicacion</th>
-                <th>Periodo de verificacion</th>
+                <th>Ubicación</th>
+                <th>Periodo de verificación</th>
                 <th>Nombre del verificador</th>
-                <th>Fecha de emicion</th>
+                <th>Fecha de emisión</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
@@ -54,7 +63,9 @@ const TropikTable = () => {
                   <td>{row.emission}</td>
                   <td>{row.status}</td>
                   <td className="actions-cell">
-                    <button className="actions-button">...</button>
+                    <button className="actions-button" onClick={() => navigate(`/new-bond/${row.id}`)}>
+                      Editar
+                    </button>
                   </td>
                 </tr>
               ))}
