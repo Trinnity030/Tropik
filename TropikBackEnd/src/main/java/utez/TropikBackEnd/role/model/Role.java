@@ -3,7 +3,7 @@ package utez.TropikBackEnd.role.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
     @Id
