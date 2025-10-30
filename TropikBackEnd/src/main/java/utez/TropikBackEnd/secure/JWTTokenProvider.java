@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.KeyFactory;
@@ -17,6 +18,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JWTTokenProvider {
@@ -68,6 +70,16 @@ public class JWTTokenProvider {
         return keyFactory.generatePublic(keySpec);
     }
 
+    // Método para generar token con UserDetails
+    public String generateToken(UserDetails userDetails) {
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
+                .collect(Collectors.toList());
+
+        return generateToken(userDetails.getUsername(), roles);
+    }
+
+    // Método original para generar token con username y roles
     public String generateToken(String username, List<String> roles) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
@@ -83,7 +95,8 @@ public class JWTTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser()
+            // CORRECCIÓN: Sintaxis correcta para JJWT 0.11.5
+            Jwts.parserBuilder()
                     .setSigningKey(publicKey)
                     .build()
                     .parseClaimsJws(token);
@@ -94,11 +107,17 @@ public class JWTTokenProvider {
     }
 
     public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser()
+        // CORRECCIÓN: Sintaxis correcta para JJWT 0.11.5
+        Claims claims = Jwts.parserBuilder()
                 .setSigningKey(publicKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
+    }
+
+    // Método para obtener el tiempo de expiración
+    public long getExpirationTime() {
+        return jwtExpiration;
     }
 }

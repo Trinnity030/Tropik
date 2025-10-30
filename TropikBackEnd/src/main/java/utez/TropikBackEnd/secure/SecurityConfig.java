@@ -36,10 +36,8 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        // Endpoints públicos
                         .requestMatchers("/login").permitAll()
-                        // Endpoints que requieren autenticación
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -50,10 +48,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*")); // CORRECCIÓN: Usar Arrays.asList
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT")); // CORRECCIÓN: Métodos completos
-        configuration.setAllowedHeaders(Arrays.asList("*")); // CORRECCIÓN: Usar Arrays.asList
-        configuration.setAllowCredentials(true); // Importante para cookies/auth
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

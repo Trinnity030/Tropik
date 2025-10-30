@@ -3,7 +3,7 @@ package utez.TropikBackEnd.carbonCertificate.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "carboneCrf")
+@Table(name = "carbonCrf")
 public class CarbonCtf {
 
     @Id

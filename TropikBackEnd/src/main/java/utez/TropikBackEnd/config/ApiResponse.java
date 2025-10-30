@@ -10,6 +10,11 @@ public class ApiResponse {
 
     public ApiResponse(){}
 
+    public ApiResponse(String text, TypesResponse type) {
+        this.text = text;
+        this.type = type;
+    }
+
     public ApiResponse(String text, Object data, TypesResponse type){
         this.text = text;
         this.data = data;

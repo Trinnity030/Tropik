@@ -17,6 +17,8 @@ public class User {
     @JoinColumn(name = "role_id")       // columna en la tabla "users"
     private Role role;
 
+    private boolean status;
+
     public User(){}
 
     public Long getId() {
@@ -49,5 +51,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
