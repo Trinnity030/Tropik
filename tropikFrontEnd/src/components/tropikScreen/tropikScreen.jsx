@@ -54,9 +54,12 @@ const TropikScreen = () => {
           <h1 className="app-title">Tropik</h1>
         </div>
         {/* Botón de login */}
-        <button className="login-button" onClick={goToLogin}>
+        <div class="login-wrapper">
+  <button className="login-button" onClick={goToLogin}>
           Iniciar Sesión
         </button>
+</div>
+        
       </header>
 
       {/* Subtítulo */}
