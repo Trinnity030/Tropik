@@ -1,0 +1,54 @@
+.modal-container {
+  background-color: #0d1110; /* Color de fondo oscuro */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 24px;
+  width: 300px; /* Ancho fijo, puedes ajustarlo */
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.icon-circle {
+  background-color: #00e676; /* Verde brillante del ícono */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.icon-circle svg {
+  width: 30px;
+  height: 30px;
+  color: #0d1110; /* Color del check (fondo oscuro) */
+}
+
+.modal-title {
+  color: white; /* Texto blanco */
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.modal-subtitle {
+  color: white; /* Texto blanco */
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.action-button {
+  background-color: #00e676; /* Verde brillante del botón */
+  color: #0d1110; /* Texto oscuro para contraste */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: #00cc69; /* Verde más oscuro al hacer hover */
+}

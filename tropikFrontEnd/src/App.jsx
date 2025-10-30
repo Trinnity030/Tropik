@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { LoginForm } from './components/login-form.jsx'
+import TropikScreen from './components/tropikScreen/tropikScreen.jsx'
+import TropikTable from './components/tropikTable/tropikTable.jsx'
+import NewBondForm from './components/newBondForm/newBondForm.jsx'
+import LoginScreen from './components/loginScreen/loginScreen.jsx'
 import './App.css'
 
 function App() {
 
   return (
-    <>
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center p-4">
-      <LoginForm />
-      </div>
-    </>
+    <div className="App">
+      <LoginScreen />
+    </div>
   )
 }
 

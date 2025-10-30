@@ -1,0 +1,135 @@
+/* Estilos generales */
+.tropik-container {
+  background-color: #0d0d0d; /* Fondo oscuro */
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Estilos del Encabezado */
+.tropik-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #0a0a0a;
+  border-bottom: 2px solid #0f0f0f;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #006400; /* Verde oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #00ff00; /* Borde verde brillante */
+}
+
+.logo-plant {
+  font-size: 28px;
+  color: #00ff00; /* Verde brillante */
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.welcome-text {
+  font-size: 18px;
+  color: #cccccc;
+}
+
+.add-button {
+  background-color: #00ff00; /* Verde brillante */
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: #00cc00; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Estilos de la Sección Principal */
+.main-content {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Estilos de la Tabla */
+.table-container {
+  overflow-x: auto; /* Para pantallas pequeñas */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #121212; /* Fondo oscuro de la tabla */
+  border: 2px solid #00ff00; /* Borde verde brillante */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #00ff00; /* Línea divisoria verde */
+  color: white;
+}
+
+.data-table th {
+  background-color: #4caf50; /* Verde claro para encabezados */
+  font-weight: bold;
+  color: black;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none; /* Quitar borde inferior de la última fila */
+}
+
+/* Estilos de la celda de Acciones */
+.actions-cell {
+  text-align: center;
+}
+
+.actions-button {
+  background: none;
+  border: none;
+  color: #00ff00; /* Verde brillante */
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.actions-button:hover {
+  color: #00cc00; /* Verde más oscuro al pasar el mouse */
+}

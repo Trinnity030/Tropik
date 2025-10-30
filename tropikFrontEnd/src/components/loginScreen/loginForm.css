@@ -1,0 +1,136 @@
+/* Estilos generales */
+.login-container {
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tarjeta de login - ¡Más cuadrada! */
+.login-card {
+  background-color: #0d2b1a;
+  padding: 30px; /* 👈 Reducido para menos altura */
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(74, 222, 128, 0.2);
+  width: 100%;
+  max-width: 380px; /* 👈 Un poco más estrecho */
+  min-height: 400px; /* 👈 Forzamos una altura mínima para que sea más cuadrada */
+  text-align: center;
+  border: 2px solid #4ade80;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centramos verticalmente el contenido */
+  gap: 20px; /* Espacio entre los elementos principales */
+}
+
+/* Logo circular */
+.logo-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #006400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #4ade80;
+  margin: 0 auto;
+}
+
+.logo-plant {
+  font-size: 30px;
+  color: #4ade80;
+}
+
+/* Título y subtítulo */
+.welcome-title {
+  font-size: 26px;
+  margin-bottom: 5px;
+  color: white;
+  font-weight: 700;
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  color: #cccccc;
+  margin-bottom: 15px; /* 👈 Reducido */
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 👈 Reducido para hacerlo más compacto */
+  width: 100%;
+  padding: 0 10px; /* Para evitar que toque los bordes */
+}
+
+/* Grupo de campos */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* 👈 Reducido */
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #e0e0e0;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Input con ícono */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon .icon-user,
+.input-with-icon .icon-lock {
+  position: absolute;
+  left: 12px;
+  color: #aaaaaa;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: 2px solid #4ade80;
+  border-radius: 8px;
+  background-color: #0a0a0a;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.25s ease;
+  background-color: #4ade80;
+  color: #0f172a;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #22c55e;
+  transform: translateY(-1px);
+}
