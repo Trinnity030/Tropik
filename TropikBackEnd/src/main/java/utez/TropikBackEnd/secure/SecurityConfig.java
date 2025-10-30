@@ -1,4 +1,4 @@
 package utez.TropikBackEnd.secure;
 
-public class JWTUtils {
+public class SecurityConfig {
 }
